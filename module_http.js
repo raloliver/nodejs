@@ -7,5 +7,5 @@ const serve = http.createServer(function (req, res) {
 
 const port = 3000
 serve.listen(port, function(){
-    console.log(`De olha na porta ${port}`)
+    console.log(`De olho na porta ${port}`)
 })
