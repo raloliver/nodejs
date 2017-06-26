@@ -1,0 +1,40 @@
+<!DOCTYPE html>
+<html lang="en" ng-app="componentApp">
+
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1.0, user-scalable=no">
+    <meta http-equiv="Content-Type" content="text/html;charset=UTF-8">
+    <meta http-equiv="Cache-Control: max-age=3600, must-revalidate">
+    <meta name="description" content="dont use $scope">
+    <title>dont use $scope</title>
+    <script src="node_modules/angular/angular.min.js"></script>
+    <script>
+        angular.module('componentApp', [])
+        angular.module('componentApp').component('homeComponent', {
+            bindings: {
+                id: '@',
+                label: '@',
+                model: '=' //< bind unidirecional = bind bidirecional
+            },
+            template: `
+                <label for="{{$ctrl.id}}">{{$ctrl.label}}</label>
+                <input id="{{$ctrl.id}}" ng-model='$ctrl.model'>
+            `
+        })
+        angular.module('componentApp').controller('componentController', function () {
+            const self = this
+            self.name = "Israel Oliveira"
+        })
+    </script>
+</head>
+
+<body>
+    <div ng-controller="componentController as ctrl">
+        <h1>{{ctrl.name}}</h1>
+        <home-component id="nome" label="Nome" model="ctrl.name"></home-component>
+    </div>
+</body>
+
+</html>

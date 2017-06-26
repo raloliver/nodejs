@@ -1,0 +1,32 @@
+<!DOCTYPE html>
+<html lang="en" ng-app="directiveApp">
+
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1.0, user-scalable=no">
+    <meta http-equiv="Content-Type" content="text/html;charset=UTF-8">
+    <meta http-equiv="Cache-Control: max-age=3600, must-revalidate">
+    <meta name="description" content="dont use $scope">
+    <title>dont use $scope</title>
+    <script src="node_modules/angular/angular.min.js"></script>
+    <script>
+        angular.module('directiveApp', [])
+        angular.module('directiveApp').directive('homeDirective', function () {
+            return {
+                restrict: 'AE',
+                template: `<h2>${new Date}</h2>`
+            }
+        })
+    </script>
+</head>
+
+<body>
+    <h1>Attr</h1>
+    <div home-directive></div>
+    <hr>
+    <h1>El</h1>
+    <home-directive></home-directive>
+</body>
+
+</html>

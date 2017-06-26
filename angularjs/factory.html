@@ -1,0 +1,40 @@
+<!DOCTYPE html>
+<html lang="en" ng-app="factoryApp">
+
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1.0, user-scalable=no">
+    <meta http-equiv="Content-Type" content="text/html;charset=UTF-8">
+    <meta http-equiv="Cache-Control: max-age=3600, must-revalidate">
+    <meta name="description" content="dont use $scope">
+    <title>dont use $scope</title>
+    <script src="node_modules/angular/angular.min.js"></script>
+    <script>
+        angular.module('factoryApp', [])
+        angular.module('factoryApp').factory('facilities', function () {
+            function upper(input) {
+                return input.toUpperCase()
+            }
+            //toda factory precisa retornar um objeto (aqui usamos ES2015)
+            return {
+                upper
+            }
+        })
+        angular.module('factoryApp').controller('factoryController', [
+            'facilities',
+            function (facilities) {
+                const self = this
+                self.value = facilities.upper('este é um texto escrito originalmente com letras minúsculas')
+            }
+        ])
+    </script>
+</head>
+
+<body>
+    <div ng-controller="factoryController as ctrl">
+        <h1>{{ctrl.value}}</h1>
+    </div>
+</body>
+
+</html>
